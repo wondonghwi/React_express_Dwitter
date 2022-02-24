@@ -13,7 +13,7 @@ app.use(morgan('tiny'));
 app.use(helmet());
 
 //라우터 prefix
-app.use('/tweets.js', tweetsRouter);
+app.use('/tweets', tweetsRouter);
 
 app.use((req, res, next) => {
   res.sendStatus(404);
