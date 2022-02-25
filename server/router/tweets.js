@@ -14,8 +14,8 @@ let tweets = [
     id: '2',
     text: '두번째 작업',
     createdAt: Date.now().toString(),
-    name: 'donghwi',
-    username: 'won',
+    name: 'won',
+    username: 'donghwi',
   },
 ];
 
