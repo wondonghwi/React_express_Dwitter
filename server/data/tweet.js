@@ -1,43 +1,51 @@
+import * as userRepository from './auth.js';
+
 export let tweets = [
   {
     id: '1',
     text: '첫번째 작업',
     createdAt: Date.now().toString(),
-    name: 'Bob',
-    username: 'bob',
-    url: 'https://cdn.expcloud.co/life/uploads/2020/04/27135731/Fee-gentry-hed-shot-1.jpg',
+    userId: '1',
   },
   {
     id: '2',
     text: '두번째 작업',
     createdAt: Date.now().toString(),
-    name: 'won',
-    username: 'donghwi',
+    userId: '1',
   },
 ];
 
 export const getAll = async () => {
-  return tweets;
+  return Promise.all(
+    tweets.map(async tweet => {
+      const { username, name, url } = await userRepository.findById(tweet.userId);
+      return { ...tweet, username, name, url };
+    })
+  );
 };
 
 export const getAllByUsername = async username => {
-  return tweets.filter(tweet => tweet.username === username);
+  return getAll().then(tweets => tweets.filter(tweet => tweet.username === username));
 };
 
-export const getAllById = async id => {
-  return tweets.find(tweet => tweet.id === id);
+export const getById = async id => {
+  const found = tweets.find(tweet => tweet.id === id);
+  if (!found) {
+    return null;
+  }
+  const { username, name, url } = await userRepository.findById(found.userId);
+  return { ...found, username, name, url };
 };
 
-export const create = async (text, name, username) => {
+export const create = async (text, userId) => {
   const tweet = {
-    id: Date.now().toString(),
+    id: new Date().toString(),
     text,
     createdAt: new Date(),
-    name,
-    username,
+    userId,
   };
   tweets = [tweet, ...tweets];
-  return tweet;
+  return getById(tweet.id);
 };
 
 export const update = async (id, text) => {
@@ -45,7 +53,7 @@ export const update = async (id, text) => {
   if (tweet) {
     tweet.text = text;
   }
-  return tweet;
+  return getById(tweet.id);
 };
 
 export const remove = async id => {
