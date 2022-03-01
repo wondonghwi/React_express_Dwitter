@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import tweetsRouter from './router/tweets.js';
 import authRouter from './router/auth.js';
+import { config } from './config.js';
 
 const app = express();
 
@@ -27,4 +28,4 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-app.listen(8080);
+app.listen(config.host.port);
