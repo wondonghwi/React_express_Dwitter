@@ -8,6 +8,13 @@ let users = [
     email: 'bob@gmail.com',
     url: 'https://cdn.expcloud.co/life/uploads/2020/04/27135731/Fee-gentry-hed-shot-1.jpg',
   },
+  {
+    id: '2',
+    username: 'donghwi',
+    password: '$2b$12$G9xf8SFq3oTEgdj7ozHQ/uhDOyeQcUEDU8tnOcvpvApuadr3nE5Vm',
+    name: 'Donghwi',
+    email: 'donghwi@gmail.com',
+  },
 ];
 
 export const findByUsername = async username => {

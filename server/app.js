@@ -5,6 +5,7 @@ import cors from 'cors';
 import tweetsRouter from './router/tweets.js';
 import authRouter from './router/auth.js';
 import { config } from './config.js';
+import { initSocket } from './connection/socket.js';
 
 const app = express();
 
@@ -28,4 +29,5 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-app.listen(config.host.port);
+const server = app.listen(config.host.port);
+initSocket(server);
