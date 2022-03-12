@@ -6,7 +6,7 @@ import tweetsRouter from './router/tweets.js';
 import authRouter from './router/auth.js';
 import { config } from './config.js';
 import { initSocket } from './connection/socket.js';
-import { db } from './db/database.js';
+import { sequelize } from './db/database.js';
 
 const app = express();
 
@@ -30,7 +30,8 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-db.getConnection().then(connection => console.log(connection));
-
-const server = app.listen(config.host.port);
-initSocket(server);
+//DB 실행 후 서버 시작
+sequelize.sync().then(() => {
+  const server = app.listen(config.host.port);
+  initSocket(server);
+});
