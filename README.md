@@ -11,8 +11,8 @@
 > - Sequelize (ORM)
 
 > 공통 
-> socket.io
+> - socket.io
 
 > 배포
-> 프론트 - netlify로 react 배포
-> 백 - Platform.sh이용 (HTTP2)
+> - 프론트 - netlify로 react 배포 
+> - 백 - Platform.sh이용 (HTTP2)
