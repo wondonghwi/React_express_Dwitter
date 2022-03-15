@@ -18,3 +18,5 @@
 > 배포
 > - 프론트 - netlify로 client 배포 
 > - 백 - heroku로 server 배포
+
+![썸네일](https://user-images.githubusercontent.com/55338435/158445823-9ea5410e-f09b-4188-8811-41a411abb3c7.png)
