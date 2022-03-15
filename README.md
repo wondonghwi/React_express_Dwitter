@@ -1,6 +1,8 @@
 # React + Express + MySql을 이용한 Dwitter 프로젝트
 
-> 제공받은 client 폴더 코드에 직접 작성한 node.js의 Express를 적용해 만든 프로젝트
+[프로젝트 바로가기](https://dwitters.netlify.app/)
+
+> client 폴더 코드에 직접 작성한 node.js의 Express를 적용해 만든 프로젝트
 
 > 프론트 (client)
 > - React
