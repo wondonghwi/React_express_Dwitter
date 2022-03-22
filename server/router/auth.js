@@ -11,14 +11,6 @@ const validationCredential = [
   body('password').trim().isLength({ min: 5 }).withMessage('password least 5 characters'),
 ];
 
-const validateSignup = [
-  ...validationCredential,
-  body('name').notEmpty().withMessage('name is missing'),
-  body('email').isEmail().normalizeEmail().withMessage('invalid email'),
-  body('url').isURL().withMessage('invalid URL').optional({ nullable: true, checkFalsy: true }),
-];
-
-router.post('/signup', validateSignup, authController.signup);
 router.post('/login', validationCredential, authController.login);
 router.get('/me', isAuth, authController.me);
 

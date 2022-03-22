@@ -47,7 +47,7 @@ const ORDER_DESC = {
 };
 
 export const getAll = async () => {
-  return Tweet.findAll({ ...INCLUDE_USER, ...ORDER_DESC });
+  return Tweet.findAll({ ...INCLUDE_USER, ...ORDER_DESC, raw: true });
   // return db.execute(`${SELECT_JOIN} ${ORDER_DESC}`).then(result => result[0]);
 };
 
@@ -59,6 +59,7 @@ export const getAllByUsername = async username => {
       ...INCLUDE_USER.include,
       where: { username },
     },
+    raw: true,
   });
   // return db.execute(`${SELECT_JOIN} WHERE username=? ${ORDER_DESC}`, [username]).then(result => result[0]);
 };
