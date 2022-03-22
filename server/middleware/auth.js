@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import * as userRepository from '../data/auth.js';
+import { config } from '../config.js';
 
 const AUTH_ERROR = { message: 'Authentication Error' };
 
@@ -10,7 +11,7 @@ export const isAuth = async (req, res, next) => {
   }
 
   const token = authHeader.split(' ')[1];
-  // TODO: Make it secure!
+  console.log(token);
   jwt.verify(token, 'F2dN7x8HVzBWaQuEEDnhsvHXRWqAR63z', async (error, decoded) => {
     if (error) {
       return res.status(401).json(AUTH_ERROR);
@@ -23,4 +24,22 @@ export const isAuth = async (req, res, next) => {
     req.token = token;
     next();
   });
+};
+
+export const authHandler = async req => {
+  const authHeader = req.get('Authorization');
+  const token = authHeader.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, config.jwt.secretKey);
+    const user = await userRepository.findById(decoded.id);
+    if (!user) {
+      throw { status: 401, ...AUTH_ERROR };
+    }
+    req.userId = user.id;
+    req.token = decoded;
+    return true;
+  } catch (err) {
+    console.log(err);
+    throw { status: 401, ...AUTH_ERROR };
+  }
 };
