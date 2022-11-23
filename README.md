@@ -1,6 +1,6 @@
 # React + Express + MySql을 이용한 Dwitter 프로젝트
 
-( 현재 heroku 무료 기간 종료이유로 서버 api 이용 불가 ) ~~(https://dwitter-prod-7p2uu0yfk-wondonghwi.vercel.app/)~~
+2022/11/28 heroku 무료 기간 종료이유로 서버 api 이용 불가합니다. ~~[프로젝트 바로가기](https://dwitter-prod-7p2uu0yfk-wondonghwi.vercel.app/)~~
 
 > client 폴더 코드에 직접 작성한 node.js의 Express를 적용해 만든 프로젝트
 
